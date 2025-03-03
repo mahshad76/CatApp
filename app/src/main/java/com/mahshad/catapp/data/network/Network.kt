@@ -5,14 +5,14 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 object RetrofitClient {
-
     private const val BASE_URL = "https://api.thecatapi.com/v1/"
 
     private val retrofit: Retrofit by lazy {
         val gson = GsonBuilder()
-            .setLenient() // Handle potentially malformed JSON (use with caution in production)
+            .setLenient()
             .create()
 
         Retrofit.Builder()
@@ -20,24 +20,17 @@ object RetrofitClient {
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
     }
+
+    val apiService = retrofit.create(ApiService::class.java)
 }
 
 private const val API_KEY = "live_Q06ZqwYdHC5RoGxVTZToeLdQiPrdoY27E1FEVmOSNFCzoUup2yQAfq87Kd9L8jmn"
 
 interface ApiService {
-    @GET("breeds?api_key=$API_KEY")
-    fun getCats(): Call<Cat>
+    @GET("breeds")
+    fun getCats(@Query("api_key") apiKey: String = API_KEY): Call<Cat>
 }
 
-data class Cat (
+data class Cat(
     val name: String
 )
-
-
-//val userService: ApiService by lazy {
-//    retrofit.create(UserService::class.java)
-//}
-
-val test: (Int) -> Int = {
-    it * 2
-}
