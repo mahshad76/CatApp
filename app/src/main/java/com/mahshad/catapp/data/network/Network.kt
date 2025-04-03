@@ -15,6 +15,8 @@ object RetrofitClient {
     private const val BASE_URL = "https://api.thecatapi.com/v1/"
 
     private val retrofit: Retrofit by lazy {
+        ///HttpLoggingInterceptor() to see the details of your network communication in the logcat.
+        ///apply is a
         val intercepter = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
         }

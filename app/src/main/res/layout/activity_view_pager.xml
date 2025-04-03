@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?><!--    The android and tools namespaces are simply XML namespace declarations that define attributes and elements that the android operating system, and android studio, understands.-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.viewpager.ViewPagerActivity">
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#CDECF0"
+        android:elevation="10dp" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F0D4D4" />
+
+</LinearLayout>

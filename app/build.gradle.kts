@@ -7,6 +7,10 @@ android {
     namespace = "com.mahshad.catapp"
     compileSdk = 35
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId = "com.mahshad.catapp"
         minSdk = 21
@@ -52,6 +56,9 @@ dependencies {
     // glide
     implementation(libs.glide)
     annotationProcessor(libs.compiler)
+
+    // viewpager
+    implementation(libs.androidx.viewpager2)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
