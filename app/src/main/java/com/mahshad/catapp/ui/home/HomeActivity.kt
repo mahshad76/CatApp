@@ -1,18 +1,16 @@
 package com.mahshad.catapp.ui.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.example.Breed
 import com.google.android.material.navigation.NavigationView
 import com.mahshad.catapp.R
 import com.mahshad.catapp.data.network.RetrofitClient
-import com.mahshad.catapp.ui.detail.DetailActivity
+import com.mahshad.catapp.databinding.ActivityHomeBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,6 +22,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         const val KEY_ID = "id"
     }
 
+    private lateinit var homeView: ActivityHomeBinding
     private lateinit var recyclerView: RecyclerView
     private lateinit var itemAdapter: ItemAdapter
 
@@ -32,7 +31,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         //search about this
         enableEdgeToEdge()
-        setContentView(R.layout.activity_home)
+        homeView = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(homeView.root)
+        recyclerView = homeView.root.findViewById(R.id.recyclerView)
         //search about this
 //        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.home)) { v, insets ->
 //            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -40,7 +41,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 //            insets
 //        }
 
-        setupRecyclerView()
+//        setupRecyclerView()
         val call = RetrofitClient.apiService.getBreeds()
         Log.i(TAG, "beforeCall: ${System.currentTimeMillis()}")
         call.enqueue(object : Callback<List<Breed>> {
@@ -51,7 +52,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         breeds = breeds ?: emptyList(),
                         listener = object : OnItemClickListener {
                             override fun onItemClick(position: Int, id: String?) {
-                                navigateToDetail(id = id)
+                                //navigateToDetail(id = id)
                             }
                         })
                     recyclerView.adapter = itemAdapter
@@ -68,10 +69,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         Log.i(TAG, "afterCall: ${System.currentTimeMillis()}")
     }
 
-    private fun setupRecyclerView() {
-        recyclerView = findViewById(R.id.recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-    }
+//    private fun setupRecyclerView() {
+//        recyclerView = findViewById(R.id.recyclerView)
+//        recyclerView.layoutManager = LinearLayoutManager(this)
+//    }
 
     override fun onResume() {
         super.onResume()
@@ -81,12 +82,12 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onPause()
     }
 
-    private fun navigateToDetail(id: String?) {
-        val intent = Intent(this, DetailActivity::class.java).apply {
-            putExtra(KEY_ID, id)
-        }
-        startActivity(intent)
-    }
+//    private fun navigateToDetail(id: String?) {
+//        val intent = Intent(this, DetailActivity::class.java).apply {
+//            putExtra(KEY_ID, id)
+//        }
+//        startActivity(intent)
+//    }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         TODO("Not yet implemented")
