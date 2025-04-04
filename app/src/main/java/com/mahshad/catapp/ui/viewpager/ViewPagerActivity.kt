@@ -18,10 +18,8 @@ class ViewPagerActivity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityViewPagerBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         val viewPager: ViewPager2 = binding.root.findViewById(R.id.viewPager)
         val tabLayout: TabLayout = binding.root.findViewById(R.id.tabLayout)
-
         viewpagerAdapter = ViewPagerAdaptor(
             listOf(DetailedDescriptionFragment(), SellerInfoFragment()),
             supportFragmentManager,
@@ -30,18 +28,14 @@ class ViewPagerActivity : AppCompatActivity() {
 
         viewPager.adapter = viewpagerAdapter
 
+        //TabLayoutMediator: This class is specifically designed to connect a TabLayout with a ViewPager2.
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = when (position) {
-                0 -> "Home"
-                1 -> "Profile"
-                else -> ""
+                0 -> "Detailed Description"
+                1 -> "Seller Info"
+                else -> "Detailed Description"
             }
         }.attach()
 
-
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-//            insets
     }
 }
