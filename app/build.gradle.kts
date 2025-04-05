@@ -60,7 +60,8 @@ dependencies {
     // viewpager
     implementation(libs.androidx.viewpager2)
 
-    implementation (libs.material.v1110)
+    // drawer view
+    implementation (libs.material)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
