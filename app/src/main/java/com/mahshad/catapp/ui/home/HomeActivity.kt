@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +17,7 @@ import com.google.android.material.navigation.NavigationView
 import com.mahshad.catapp.R
 import com.mahshad.catapp.data.network.RetrofitClient
 import com.mahshad.catapp.ui.detail.DetailActivity
+import com.mahshad.catapp.ui.viewpager.ViewPagerActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -55,6 +57,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
         navigationView.setNavigationItemSelectedListener(this)
+        navigationView.setCheckedItem(R.id.nav_home)
         //search about this
 //        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.home)) { v, insets ->
 //            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -111,6 +114,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        TODO("Not yet implemented")
+        if (item.itemId == R.id.nav_info) {
+            val intent = Intent(this, ViewPagerActivity::class.java)
+            startActivity(intent)
+        }
+        drawerLayout.closeDrawer(GravityCompat.START)
+        return true
     }
 }
