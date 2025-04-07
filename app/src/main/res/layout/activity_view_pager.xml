@@ -4,9 +4,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context=".ui.viewpager.ViewPagerActivity"
-    android:fitsSystemWindows="true">
+    tools:context=".ui.viewpager.ViewPagerActivity">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
