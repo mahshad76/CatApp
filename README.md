@@ -13,3 +13,17 @@ This application consists of multiple activities and fragments following the MVC
 
 - Bottom Navigation (BottomNavigationView): Appears when a card in the RecyclerView is selected, enabling navigation between sections within the new activity.
 
+# 📚 Libraries Used
+
+- Retrofit: For making HTTP requests to the remote API.
+
+- OkHttp: As the underlying HTTP client for handling network calls efficiently.
+
+- Gson: For parsing and converting JSON data to and from Kotlin objects.
+
+# ⚙️ Architecture
+- Model: Holds the data models and logic.
+- View: Responsible for the UI elements and display of data (XML layouts and Activities/Fragments).
+- Controller: Handles user input, manages View updates, and interacts with the Model.
+
+
